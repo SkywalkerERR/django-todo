@@ -1,0 +1,18 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<title>Completed ToDo</title>
+<div class="container">
+    <h1 class="current-h1">{{ todos.count }} Completed ToDo{{ todos.count|pluralize }}</h1>
+    {% for todo in todos %}
+    <div class="card text-bg-success mb-3" style="max-width: 100%;">
+        <a href="{% url 'viewtodo' todo.id %}"><div class="card-header">{{ todo.title }}</div></a>
+      <a href="{% url 'viewtodo' todo.id %}"><div class="card-body">
+        <h5 class="card-title">Выполнено</h5>
+      </div>
+      <div class="card-footer bg-transparent border-success">{{ todo.datecompleted|date:'M j Y H:i' }}</div>
+      </a>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

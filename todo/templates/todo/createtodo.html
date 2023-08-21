@@ -1,0 +1,17 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<title>Create ToDo</title>
+    <h1 class="createtodo-h1">Create new ToDo</h1>
+
+<h2>{{ error }}</h2>
+
+<div class="createtodo-container">
+<form class="createtodo-form" method="POST">
+    {% csrf_token %}
+    <div class="createtodo-el">{{ form.as_p  }}</div>
+    <button class="btn btn-primary" type="submit">Create</button>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<title>Current ToDo</title>
+<div class="container">
+    <h1 class="current-h1">{{ todos.count }} Current ToDo{{ todos.count|pluralize }}</h1>
+    {% for todo in todos %}
+        {% if todo.importend %}
+            <div class="card text-bg-danger mb-3" style="max-width: 100%;">
+                <a href="{% url 'viewtodo' todo.id %}"><div class="card-header">ToDo</div></a>
+                <a href="{% url 'viewtodo' todo.id %}"><div class="card-body">
+                    <h5 class="card-title">{{ todo.title }}</h5>
+                    <p class="card-text"> - {% if todo.discriptions %}  {{ todo.discriptions }}{% endif %}</p>
+                </div></a>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {% for todo in todos %}
+        {% if not todo.importend %}
+            <div class="card text-bg-light mb-3" style="max-width: 100%;">
+                <a href="{% url 'viewtodo' todo.id %}"><div class="card-header">ToDo</div></a>
+                <a href="{% url 'viewtodo' todo.id %}"><div class="card-body">
+                    <h5 class="card-title">{{ todo.title }}</h5>
+                    <p class="card-text"> - {% if todo.discriptions %}  {{ todo.discriptions }}{% endif %}</p>
+                </div></a>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
